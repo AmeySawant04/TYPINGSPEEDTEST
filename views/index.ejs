@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Home</title>
+</head>
+
+<script>
+    const user = <%- JSON.stringify(userData) %>; 
+</script>
+
+<body class="relative flex flex-col justify-evenly items-center bg-zinc-900 h-screen">
+    <div class="w-full h-1/2 flex justify-evenly items-center">
+        <div class="graph wpm rounded-lg">
+            <canvas id="WPM" class="w-full h-full"></canvas>
+        </div>
+        <div class="graph acc rounded-lg">
+            <canvas id="Accuracy" class="w-full h-full"></canvas>
+        </div>
+    </div>
+    <div class="w-full h-1/4 flex flex-col justify-center items-center">
+        <div class="w-full h-1/6 text-white flex justify-center items-center">Let's test your speed</div>
+        <a href="/test"
+            class="w-56 h-1/2 flex justify-center items-center gap-4 bg-[#e63946] rounded-2xl cursor-pointer hover:bg-[#ef4444]">
+            <div class="h-3/4 flex justify-center rounded-full bg-white items-center">
+                <img class="h-full" src="/images/icons/next.png" alt="">
+            </div>
+            <div class="text-white text-6xl mb-3 h-full flex justify-center items-center">Play</div>
+        </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        const wpmData = [];
+        const accuracyData = [];
+        const timeLabels = [];
+
+        if (user) {
+            console.log("if")
+            // const n = user.tests.length;
+            // Array.from({ length: n }, (_, i) => i).forEach((i) => {
+            //     timeLabels.push(i);
+            // })
+
+            user.tests.forEach((test) => {
+                date = JSON.stringify(test.testDate).slice(6,11);
+                timeLabels.push(date);
+                wpmData.push(test.wpm)
+                accuracyData.push(test.accuracy)
+            })
+        } else {
+            console.log("else")
+            tempTimeLabels = ['60', '55', '50', '45', '40', '35', '30', '25', '20', '15', '10', '5', '0'];
+            tempWpmData = [30, 32, 33, 31, 32, 36, 38, 42, 42, 45, 43, 46, 48];
+            tempAccuracyData = [89, 88, 87, 89, 87, 92, 95, 93, 96, 96, 98, 97, 98];
+            for(i = 0; i < tempTimeLabels.length; i++){
+                timeLabels.push(tempTimeLabels[i]);
+                wpmData.push(tempWpmData[i]);
+                accuracyData.push(tempAccuracyData[i]);
+            }
+        }
+
+
+        Chart.defaults.plugins.beforeDraw = (chart) => {
+            const ctx = chart.ctx;
+            ctx.shadowColor = "rgba(255, 255, 255, 0.5)"; // White glow
+            ctx.shadowBlur = 15; // Glow intensity
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+        };
+
+
+
+        const wpm = document.getElementById('WPM');
+
+
+
+        new Chart(wpm, {
+            type: 'line',
+            data: {
+                labels: timeLabels,
+                datasets: [{
+                    label: 'WPM',
+                    data: wpmData,
+                    borderColor: '#d4a373', // Line color
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)', // Fill color (optional)
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white' // Legend text color
+                        }
+                    },
+                    beforeDraw: (chart) => {
+                        const ctx = chart.ctx;
+                        ctx.shadowColor = "rgba(99, 102, 241, 0.5)"; // Indigo glow
+                        ctx.shadowBlur = 20;
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'white' // X-axis text color
+                        },
+                        grid: {
+                            color: 'rgba(99, 102, 241, 0.3)' // Dark indigo grid color
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: 'white' // Y-axis text color
+                        },
+                        grid: {
+                            color: 'rgba(100, 116, 139, 0.4)' // Dark indigo grid color
+                        }
+                    }
+                }
+            }
+        });
+
+        const accuracy = document.getElementById('Accuracy');
+
+
+
+        new Chart(accuracy, {
+            type: 'line',
+            data: {
+                labels: timeLabels,
+                datasets: [{
+                    label: 'Accuracy',
+                    data: accuracyData,
+                    borderColor: '#e0ac69', // Line color
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)', // Fill color (optional)
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white' // Legend text color
+                        }
+                    },
+                    beforeDraw: (chart) => {
+                        const ctx = chart.ctx;
+                        ctx.shadowColor = "rgba(99, 102, 241, 0.5)"; // Indigo glow
+                        ctx.shadowBlur = 20;
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'white' // X-axis text color
+                        },
+                        grid: {
+                            color: 'rgba(99, 102, 241, 0.3)' // Dark indigo grid color
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: 'white' // Y-axis text color
+                        },
+                        grid: {
+                            color: 'rgba(100, 116, 139, 0.4)' // Dark indigo grid color
+                        }
+                    }
+                }
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

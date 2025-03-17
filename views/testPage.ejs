@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/testPage.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <title>TypeRow</title>
+</head>
+
+<body class="relative">
+    <script>
+        
+        const user = <%- JSON.stringify(userData) %>; 
+
+        function loginAlert() {
+            setTimeout(() => {
+                document.getElementById('loginAlert').classList.toggle('hidden');
+            }, 1200);
+
+            setTimeout(() => {
+                document.getElementById('loginAlert').classList.toggle('opacity-0');
+                document.getElementById('loginAlert').classList.toggle('opacity-100');
+            }, 2000);
+
+            setTimeout(() => {
+                document.getElementById('loginAlert').classList.toggle('opacity-100');
+                document.getElementById('loginAlert').classList.toggle('opacity-0');
+            }, 12000);
+
+            setTimeout(() => {
+                document.getElementById('loginAlert').classList.toggle('hidden');
+            }, 12800);
+        }
+
+        <% if (userData == null){ %>
+                loginAlert();
+        <% }%>
+
+    </script>
+
+    
+    <main>
+        <div class="text-white text-bold">Welcome <% if (userData != null) {%>
+            <%=userData.username%>
+            <% } %>
+        </div>
+        <section id="main-container">
+            <div id="paragraph-box" onclick="focus_now()"></div>
+            <input type="text" id="input-field" oninput='check()'>
+            <div id="input-box">
+            </div>
+            <div id="wait" class="hidden text-lg text-blue-400">Fetching Sentence . . .</div>
+            <div id="go" class="hidden text-lg text-lime-400">Here You GO!!!</div>
+        </section>
+        <section class="btn-container">
+            <button id="start-bttn" onclick="again()">Start</button>
+            <select name="length" id="length">
+                <option class="bg-indigo-500" value="0">Short</option>
+                <option class="bg-indigo-500" value="1">Medium</option>
+                <!-- <option class="bg-indigo-500" value="2">Long</option> -->
+            </select>
+        </section>
+
+
+        <section id="stats-container">
+            <div id="accuracy">Accuracy
+                <div id="acc_con"></Div>
+            </div>
+            <div id="time">Time<span id="small-sec">(sec)</span>
+                <div id="time_con"></div>
+            </div>
+            <div id="wpm">WPM
+                <div id="wpm_con"></div>
+            </div>
+        </section>
+        <a href="/"
+            class="absolute flex justify-center items-center gap-1 h-12 rounded-full font-medium text-black w-40 bg-white right-11 bottom-6">
+            <div class="mb-1">Analyse</div>
+            <img class="h-4/6" src="/images/icons/right-arrow.png" alt="">
+        </a>
+
+        <a href="/login" id="loginAlert"
+            class="hidden opacity-0 absolute text-white  text-2xl w-1/5 h-2/5 left-12 bottom-10">
+            <div class="w-full overflow-hidden p-4 h-full rounded-lg bg-zinc-600">
+                Login to keep track of your speed !!
+                <img class="w-full mt-2" src="/images/illus/keyboard.png" alt="">
+            </div>
+        </a>
+    </main>
+
+    
+
+    <script src="/javascripts/testPage.js"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Authentication & Authorization</title>
+</head>
+
+<body class="h-screen flex justify-center items-center bg-zinc-900">
+    <div action="/verify" method="post" class="w-3/4 h-3/4 p-4 rounded-lg flex justify-center tracking-tighter items-center flex-col gap-5 bg-zinc-800 text-2xl text-white">
+        <div>Username : <%= user.username%></div>
+        <div>Email : <%= user.email%></div>
+        <div>Password : <%= user.password%></div>
+        <a href="/logout" class="px-4 py-2 text-zinc-900 rounded-md text-xl bg-zinc-400">Logout</a>
+    </div>
+</body>
+
+</html>

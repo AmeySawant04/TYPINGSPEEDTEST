@@ -1,0 +1,33 @@
+body{
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+    width: 100vw;
+    height: 100vh;
+}
+
+#right_wrapper{
+    /* background: linear-gradient(to bottom, #302b63, #24243e); */
+    /* background: linear-gradient(to bottom, #24243e , #302b63); */
+    box-shadow: 5px 20px 50px #000;
+    left: -13em;
+    transition: 0.5s ease-out all;
+}
+
+#right_wrapper:hover{
+    left: 0em;
+}
+
+.graph{
+    /* width: 47%;
+    height: 47%; */
+    width: 47%;
+    height: 94%;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+}
+
+.wpm{
+    background-color: #2b1e5e;
+}
+
+.acc{
+    background-color: #3b2a6f;
+}
