@@ -1,0 +1,77 @@
+.tabulator {
+  background-color: #0f0c29 !important; /* Tailwind's zinc-50 */
+  color: white !important; /* Tailwind's gray-800 */
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 14px;
+  border-radius: 8px;
+border: 1px solid #e5e7eb !important; /* gray-200 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.tabulator .tabulator-header {
+  background-color: #0f0c29 !important; /* gray-100 */
+  color: #fff !important; /* gray-700 */
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.tabulator .tabulator-header .tabulator-col {
+  background-color: transparent !important;
+  color: inherit;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-right: 1px solid #e5e7eb !important;
+}
+
+.tabulator .tabulator-row:nth-child(even) {
+  background-color: #24243e;
+}
+
+.tabulator .tabulator-row:nth-child(odd) {
+  background-color: #302b63;
+}
+
+.tabulator .tabulator-row:hover {
+  /* color: #302b63; */
+  background-color: #c4b5fd  !important; /* sky-100 */
+}
+
+.tabulator .tabulator-row {
+  color: white;
+  height: 60px; /* Set your desired height */
+}
+
+.tabulator .tabulator-cell {
+  padding: 10px 12px;
+  border-right: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  line-height: 60px; /* Align text vertically */
+}
+
+.tabulator .tabulator-row .tabulator-cell:last-child,
+.tabulator .tabulator-header .tabulator-col:last-child {
+  border-right: none;
+}
+
+/* For the whole table scroll container */
+#example-table::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+#example-table::-webkit-scrollbar-track {
+  background: #1e1e1e; /* Dark track */
+  border-radius: 10px;
+}
+
+#example-table::-webkit-scrollbar-thumb {
+  background-color: #4f46e5; /* Indigo thumb */
+  border-radius: 10px;
+  border: 2px solid #1e1e1e;
+}
+
+/* Firefox scrollbar (limited support) */
+#example-table {
+  scrollbar-color: #4f46e5 #1e1e1e;
+  scrollbar-width: thin;
+}

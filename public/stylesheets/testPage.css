@@ -153,7 +153,7 @@ main {
 }
 
 #length {
-  background: linear-gradient(to bottom, #302b63, #24243e);
+  background: linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
   border: 0.01em solid #0f0c29;
   width: 6em;
   height: 2em;

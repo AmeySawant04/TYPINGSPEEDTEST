@@ -44,7 +44,7 @@
 
     
     <main>
-        <div class="text-white text-bold">Welcome <% if (userData != null) {%>
+        <div class="text-white text-4xl text-bold">Welcome <% if (userData != null) {%>
             <%=userData.username%>
             <% } %>
         </div>
@@ -59,8 +59,8 @@
         <section class="btn-container">
             <button id="start-bttn" onclick="again()">Start</button>
             <select name="length" id="length">
-                <option class="bg-indigo-500" value="0">Short</option>
-                <option class="bg-indigo-500" value="1">Medium</option>
+                <option value="0">Short</option>
+                <option value="1">Long</option>
                 <!-- <option class="bg-indigo-500" value="2">Long</option> -->
             </select>
         </section>
@@ -77,10 +77,17 @@
                 <div id="wpm_con"></div>
             </div>
         </section>
+        <!-- w-40 -->
         <a href="/"
-            class="absolute flex justify-center items-center gap-1 h-12 rounded-full font-medium text-black w-40 bg-white right-11 bottom-6">
-            <div class="mb-1">Analyse</div>
+            class="absolute flex justify-center items-center gap-1 h-12 rounded-full font-medium text-black w-60 bg-white right-11 bottom-6">
+            <div class="mb-1">Analyse Progress</div>
             <img class="h-4/6" src="/images/icons/right-arrow.png" alt="">
+        </a>
+
+        <a href="/logout"
+            class="absolute flex justify-center items-center gap-3 h-12 rounded-xl font-medium text-black w-40 bg-white left-11 bottom-6">
+            <img class="h-4/6" src="/images/icons/logout.png" alt="">
+            <div class="mb-1">Logout</div>
         </a>
 
         <a href="/login" id="loginAlert"

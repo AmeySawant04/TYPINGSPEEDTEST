@@ -80,13 +80,13 @@ async function fetchSentences(length) {
             maxlen = 121;
             break;
 
-        case 1: //length between 100 - 190
+        case 1: //length between 100 - 280
             minlen = 99;
-            maxlen = 191;
+            maxlen = 281;
             break;
 
-        case 2: //length between 180 - 300
-            minlen = 179;
+        case 2: //length between 280 - 350
+            minlen = 279;
             maxlen = 301;
         default:
             console.error("Invalid length of the sentence.\nfetchSentence method can take either 0, 1, 2 as an (length) argument")
@@ -105,7 +105,7 @@ async function fetchSentences(length) {
         // console.log("dadJoke: ", dadJoke);
         // console.log("quote: ", quote);
 
-        
+
         //Push eligible length sentences
         if (fact.length > minlen && fact.length < maxlen){
             sentences.push(fact);
@@ -126,7 +126,11 @@ async function fetchSentences(length) {
         
     
 
+        if(sentences.length < 1){
+            return fetchSentences(length);
+        }
     // console.log('sentences: ', sentences);
+
     console.log("successfully sentences created");
     return sentences;
 }
@@ -134,6 +138,6 @@ async function fetchSentences(length) {
 
 // Test the function
 
-// fetchSentences(0);
+// fetchSentences(1);
 
 module.exports = { fetchSentences };

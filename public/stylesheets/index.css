@@ -19,8 +19,13 @@ body{
 .graph{
     /* width: 47%;
     height: 47%; */
-    width: 47%;
-    height: 94%;
+
+    /* when two graphs in single frame:  */
+    /* width: 47%;
+    height: 94%; */
+
+    /* width: 80%; */
+    height: 90%;
     box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
 }
 
@@ -28,6 +33,14 @@ body{
     background-color: #2b1e5e;
 }
 
-.acc{
-    background-color: #3b2a6f;
+.tableview{
+    /* background-color: #3b2a6f; */
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+    max-height: 100%;
+    
+}
+
+.play-btn{
+    background: linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
 }
