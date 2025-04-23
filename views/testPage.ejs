@@ -9,12 +9,17 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/testPage.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
     <title>TypeRow</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png"  href="/images/icons/favicon-for-speed-typing-website-with-no-detailed--Photoroom.ico">
 </head>
 
 <body class="relative">
     <script>
-        
-        const user = <%- JSON.stringify(userData) %>; 
+
+        const user = <% - JSON.stringify(userData) %>;
 
         function loginAlert() {
             setTimeout(() => {
@@ -36,17 +41,22 @@
             }, 12800);
         }
 
-        <% if (userData == null){ %>
-                loginAlert();
-        <% }%>
+        function logoutDisplay(){
+            document.getElementById("logout").classList.remove("hidden");
+        }
 
+        <% if (userData == null) { %>
+            loginAlert();
+        <% }else {%>
+            logoutDisplay();
+        <% } %> 
     </script>
 
-    
+
     <main>
-        <div class="text-white text-4xl text-bold">Welcome <% if (userData != null) {%>
-            <%=userData.username%>
-            <% } %>
+        <div class="text-white text-4xl text-bold">Welcome <% if (userData !=null) {%>
+                <%=userData.username%>
+                    <% } %>
         </div>
         <section id="main-container">
             <div id="paragraph-box" onclick="focus_now()"></div>
@@ -84,8 +94,8 @@
             <img class="h-4/6" src="/images/icons/right-arrow.png" alt="">
         </a>
 
-        <a href="/logout"
-            class="absolute flex justify-center items-center gap-3 h-12 rounded-xl font-medium text-black w-40 bg-white left-11 bottom-6">
+        <a href="/logout" id="logout"
+            class="hidden absolute flex justify-center items-center gap-3 h-12 rounded-xl font-medium text-black w-40 bg-white left-11 bottom-6">
             <img class="h-4/6" src="/images/icons/logout.png" alt="">
             <div class="mb-1">Logout</div>
         </a>
@@ -99,10 +109,10 @@
         </a>
     </main>
 
-    
+
 
     <script src="/javascripts/testPage.js"></script>
-    
+
 </body>
 
 </html>

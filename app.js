@@ -64,12 +64,12 @@ app.get("/", async (req, res) => {
       tests = [];
       user.tests.forEach((test) => {
         tests.push({
-          "testDate" : JSON.stringify(test.testDate).match(/\d{4}-\d{2}-\d{2}/)[0],
-          "wpm" : test.wpm,
-          "accuracy" : test.accuracy
-        })
+          testDate: JSON.stringify(test.testDate).match(/\d{4}-\d{2}-\d{2}/)[0],
+          wpm: test.wpm,
+          accuracy: test.accuracy,
+        });
       });
-      
+
       userData = {
         username: user.username,
         email: user.email,
@@ -77,7 +77,7 @@ app.get("/", async (req, res) => {
       };
 
       console.log("userData: ", userData);
-      res.cookie('userData', JSON.stringify(userData), { maxAge: 900000 });
+      res.cookie("userData", JSON.stringify(userData), { maxAge: 900000 });
     } catch (e) {
       console.log(e);
       res.status(500).send({ status: "error occured: \n" + e });
@@ -217,9 +217,15 @@ app.get("/login", (req, res) => {
 
 app.get("/logout", (req, res) => {
   res.clearCookie("token", {
+    path: "/", // <- Important!
     httpOnly: true,
     sameSite: "Strict",
   });
+
+  res.clearCookie("userData", {
+    path: "/", // Add this line to ensure it's deleted!
+  });
+
   res.redirect("/");
 });
 
@@ -254,6 +260,12 @@ app.get("/testsentences/:size", async (req, res) => {
   testwords = testwords.filter(numberEliminator);
   console.log(testwords);
   res.json(testwords);
+});
+
+app.get("/check-cookies", (req, res) => {
+  console.log("cookies: ");
+  console.log(req.cookies); // or req.headers.cookie
+  res.send(200, { msg: "Check server logs" });
 });
 
 app.listen(3001, (req, res) => {
